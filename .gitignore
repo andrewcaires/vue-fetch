@@ -1,0 +1,17 @@
+# system 
+.DS_Store
+Thumbs.db
+
+# directories
+dist
+node_modules
+
+# environment
+.env
+
+# npm
+.npm
+package-lock.json
+
+# vscode
+.vscode
