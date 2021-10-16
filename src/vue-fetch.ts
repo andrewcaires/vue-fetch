@@ -204,12 +204,16 @@ export const VueFetch: PluginObject<VueFetchOptions> = {
 
   install(vue: any, options: VueFetchOptions = {}): void {
 
-    Vue.prototype.$fetch = new Fetch(options);
+    Vue.$fetch =  new Fetch(options);
+    Vue.prototype.$fetch = Vue.$fetch;
   },
 };
 
 declare module 'vue/types/vue' {
   interface Vue {
+    $fetch: Fetch;
+  }
+  interface VueConstructor {
     $fetch: Fetch;
   }
 }
