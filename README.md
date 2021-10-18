@@ -1,3 +1,10 @@
+[![npm](https://img.shields.io/npm/v/@andrewcaires/vue-fetch?color=blue&logo=npm)](https://www.npmjs.com/package/@andrewcaires/vue-fetch)
+[![downloads](https://img.shields.io/npm/dt/@andrewcaires/vue-fetch?color=blue)](https://www.npmjs.com/package/@andrewcaires/vue-fetch)
+[![size](https://img.shields.io/github/repo-size/andrewcaires/vue-fetch?color=blue)](https://github.com/andrewcaires/vue-fetch)
+[![language](https://img.shields.io/github/languages/top/andrewcaires/vue-fetch?color=blue)](https://github.com/andrewcaires/vue-fetch)
+[![commit](https://img.shields.io/github/last-commit/andrewcaires/vue-fetch?color=blue&logo=github)](https://github.com/andrewcaires/vue-fetch)
+[![license](https://img.shields.io/github/license/andrewcaires/vue-fetch?color=blue)](https://github.com/andrewcaires/vue-fetch/blob/main/LICENSE)
+
 # vue-fetch
 
 VueJS plugin for the Fetch API
@@ -33,7 +40,7 @@ export default Vue.extend({
 
 ## Methods
 
-- `DELETE` / `GET`
+- `DELETE` / `GET` / `HEAD`
 
 ```js
 this.$fetch.del(path);
@@ -45,6 +52,12 @@ this.$fetch.del(path, {
 this.$fetch.get(path);
 
 this.$fetch.get(path, {
+  id: '123'
+});
+
+this.$fetch.head(path);
+
+this.$fetch.head(path, {
   id: '123'
 });
 ```

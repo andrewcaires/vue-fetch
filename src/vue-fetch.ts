@@ -73,6 +73,10 @@ class Fetch extends EventEmitter {
     return this.fetch({ method: 'get', path, query });
   }
 
+  async head(path: string, query?: VueFetchQuery): Promise<VueFetchResponse> {
+    return this.fetch({ method: 'head', path, query });
+  }
+
   async patch(path: string, body: any, query?: VueFetchQuery): Promise<VueFetchResponse> {
     return this.fetch({ method: 'patch', path, query, body });
   }
@@ -200,9 +204,13 @@ class Fetch extends EventEmitter {
   }
 }
 
+let installed = false;
+
 export const VueFetch: PluginObject<VueFetchOptions> = {
 
   install(vue: any, options: VueFetchOptions = {}): void {
+
+    if (installed) { return; } else { installed = true; }
 
     Vue.$fetch =  new Fetch(options);
     Vue.prototype.$fetch = Vue.$fetch;
