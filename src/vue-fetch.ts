@@ -1,5 +1,5 @@
 import { EventEmitter } from '@andrewcaires/utils.js';
-import Vue, { PluginObject } from 'vue';
+import Vue from 'vue';
 
 export interface VueFetchOptions {
   url?: string;
@@ -50,11 +50,13 @@ const DefaultOptions: VueFetchOptions = {
   timeout: 5000,
 };
 
-class Fetch extends EventEmitter {
+let installed = false;
+
+export class VueFetch extends EventEmitter {
 
   private options: VueFetchOptions;
 
-  constructor(options: VueFetchOptions) {
+  constructor(options: VueFetchOptions = {}) {
 
     super();
 
@@ -62,7 +64,7 @@ class Fetch extends EventEmitter {
   }
 
   create(options: VueFetchOptions = {}) {
-    return new Fetch({ ...this.options, ...options });
+    return new VueFetch({ ...this.options, ...options });
   }
 
   async del(path: string, query?: VueFetchQuery): Promise<VueFetchResponse> {
@@ -202,27 +204,22 @@ class Fetch extends EventEmitter {
 
     }).join('/');
   }
-}
 
-let installed = false;
-
-export const VueFetch: PluginObject<VueFetchOptions> = {
-
-  install(vue: any, options: VueFetchOptions = {}): void {
+  static install(vue: any, options: VueFetchOptions = {}): void {
 
     if (installed) { return; } else { installed = true; }
 
-    Vue.$fetch =  new Fetch(options);
+    Vue.$fetch = new VueFetch(options);
     Vue.prototype.$fetch = Vue.$fetch;
-  },
-};
+  }
+}
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $fetch: Fetch;
+    $fetch: VueFetch;
   }
   interface VueConstructor {
-    $fetch: Fetch;
+    $fetch: VueFetch;
   }
 }
 
