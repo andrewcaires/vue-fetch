@@ -105,6 +105,11 @@ export class VueFetch extends EventEmitter {
 
       response.data = await this.data(response.raw);
 
+      if (!response.raw.ok) {
+
+        response.error = response.raw.statusText;
+      }
+
       this.emit('complete', response);
 
       this.options.logging && this.options.logging(response);
