@@ -1,6 +1,6 @@
 {
   "name": "@andrewcaires/vue-fetch",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "VueJS plugin for the Fetch API",
   "main": "dist/vue-fetch.umd.js",
   "module": "dist/vue-fetch.esm.js",

@@ -87,7 +87,7 @@ export class VueFetch extends EventEmitter {
     return this.fetch({ method: 'post', path, query, body });
   }
 
-  async put(path: string, body: any, query: VueFetchQuery): Promise<VueFetchResponse> {
+  async put(path: string, body: any, query?: VueFetchQuery): Promise<VueFetchResponse> {
     return this.fetch({ method: 'put', path, query, body });
   }
 
