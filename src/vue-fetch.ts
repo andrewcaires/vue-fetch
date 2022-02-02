@@ -1,4 +1,4 @@
-import { EventEmitter } from '@andrewcaires/utils.js';
+import { EventEmitter, isDef } from '@andrewcaires/utils.js';
 import Vue from 'vue';
 
 export interface VueFetchOptions {
@@ -45,7 +45,6 @@ export interface VueFetchResponse {
 
 const DefaultOptions: VueFetchOptions = {
 
-  url: '',
   headers: {},
   timeout: 5000,
 };
@@ -199,11 +198,9 @@ export class VueFetch extends EventEmitter {
 
   private url(url?: string, path?: string, query?: string): string {
 
-    return [url, path, query].filter((value) => {
+    url = url || this.options.url;
 
-      return value !== undefined;
-
-    }).map((value) => {
+    return [url, path, query].filter(isDef).map((value) => {
 
       return value?.toString().replace(/(^\/+|\/+$)/mg, '');
 
